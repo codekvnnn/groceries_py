@@ -1,0 +1,59 @@
+{% extends "layout.html" %}
+{% block body %}
+<section id="hero" class="d-flex flex-column justify-content-center align-items-center">
+  <div class="container text-center text-md-left" data-aos="fade-up">
+    <h1>Welcome to <span>Grocery Store</span></h1>
+    <h2>Manage your all products here</h2>
+    <br>
+  </div>
+</section><!-- End Hero -->
+<br>
+
+
+
+<main id="main">
+  <!-- ======= Select your platform ======= -->
+  <section id="Select-Your-Platform" class="what-we-do">
+    <div class="container">
+      <div class="section-title">
+        <h2>What you want to see</h2>
+
+        <div class="container">
+          <table class="table table-striped">
+              <thead>
+                  <tr>
+                      <th scope="col">Product id</th>
+                      <th scope="col">product name</th>
+                      <th scope="col">uom id</th>
+                      <th scope="col">price per unit</th>
+                      <th scope="col">uom name</th>
+                  </tr>
+              </thead>
+              {% for rows in result %}
+              <tbody>
+                  <tr>
+                      <th scope="row">{{rows.product_id}}</th>
+                      <td>{{rows.name}}</td>
+                      <td>{{rows.uom}}</td>
+                      <td>{{rows.price_per_unit}}</td>
+                      <td>{{rows.uom_name}}</td>
+                  </tr>
+              </tbody>
+              {% endfor %}
+          </table>
+      </div>
+      <div class="container">
+        <form action="{{ url_for('Home')}}" method="post">
+           <div class="form-group col-md-5">
+              <label for="delete product id">Enter Product ID to delete</label>
+              <input id="third" name="product_id" type="number" class="form-control" />
+           </div>
+           <br />
+           <div class="form-group col-md-5">
+            <button type="submit" class="btn btn-danger">Submit</button>
+           </div>
+        </form>
+      </div>
+  </section>
+</main>
+{% endblock %}
